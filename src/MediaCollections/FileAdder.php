@@ -435,7 +435,7 @@ class FileAdder
             }
         }
 
-        if ($this->generateResponsiveImages && (new ImageGenerator())->canConvert($media)) {
+        if ($this->generateResponsiveImages && ((new ImageGenerator())->canConvert($media) || (new Webp())->canConvert($media))) {
             $generateResponsiveImagesJobClass = config('media-library.jobs.generate_responsive_images', GenerateResponsiveImagesJob::class);
 
             $job = new $generateResponsiveImagesJobClass($media);
